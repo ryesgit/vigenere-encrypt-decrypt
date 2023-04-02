@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+from vigenere_encrypt_decrypt import decrypt
 
 sg.theme('DarkBlue')
 
@@ -20,5 +21,10 @@ while True:
 
     if event == 'Quit' or event == sg.WIN_CLOSED:
         break
+
+    if event == 'Decrypt':
+        decrypted_message = decrypt(values['input'], values['key'])
+        window['decode-or-encode'].update('Decoded Message: ')
+        window['value'].update(decrypted_message)
 
 window.close()
