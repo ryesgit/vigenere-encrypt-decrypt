@@ -25,7 +25,7 @@ while True:
     if event == 'Copy':
         sg.clipboard_set(window['value'].get())
 
-    if (event == 'Encrypt' or event == 'Encrypt') and (values['input'] == '' or values['key'] == ''):
+    if (event == 'Encrypt' or event == 'Decrypt') and (values['input'] == '' or values['key'] == ''):
         sg.popup('Text and key must be filled first!', non_blocking=True)
         continue
 
