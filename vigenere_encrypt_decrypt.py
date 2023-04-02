@@ -85,7 +85,6 @@ def decrypt(text, key):
         # If text length > key length, always go back to key length[0]
         elif(index + 1 > len(numberified_key)):
             offset = index % len(numberified_key)
-            print('Offset', offset)
             difference = (num - numberified_key[offset]) + 26
             resultant_num.append(difference)
         
