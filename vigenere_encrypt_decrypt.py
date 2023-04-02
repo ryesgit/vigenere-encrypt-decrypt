@@ -48,7 +48,7 @@ def encrypt(text, key):
     # Convert result number to text
     encrypted_word = convert_to_text(resultant_num)
 
-    return encrypted_word
+    return encrypted_word.upper()
 
 def decrypt(text, key):
     resultant_num = []
@@ -77,7 +77,7 @@ def decrypt(text, key):
             resultant_num.append(difference)
     decrypted_word = convert_to_text(resultant_num)    
 
-    return decrypted_word
+    return decrypted_word.upper()
 
 # Helper functions
 
