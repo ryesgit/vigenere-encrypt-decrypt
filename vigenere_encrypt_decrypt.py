@@ -48,21 +48,21 @@ def encrypt(text, key):
 
     # Take the numerical counterparts of both TEXT and KEY.
 
-    TEXT_KEYS = convert_to_num(text)
-    key_to_num = convert_to_num(key)
+    numberified_text = convert_to_num(text)
+    numberified_keys = convert_to_num(key)
 
-    key_len = len(key_to_num)
-    for (text_index, text_num) in enumerate(TEXT_KEYS):
+    key_len = len(numberified_keys)
+    for (text_index, text_num) in enumerate(numberified_text):
         # If string is not a number, retain
         if not str(text_num).isdigit():
             resultant_num.append(text_num)
         # If text length is longer than key length, always go back to key length[0] every time we run out of key digits
         elif (text_index + 1 > key_len):
             offset = text_index % key_len
-            resultant_num.append(text_num + key_to_num[offset])
+            resultant_num.append(text_num + numberified_keys[offset])
         # Key indices within key length can be used as is
         else:
-            resultant_num.append(text_num + key_to_num[text_index])
+            resultant_num.append(text_num + numberified_keys[text_index])
 
     # Convert result number to text
     encrypted_word = convert_to_text(resultant_num)
