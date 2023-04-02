@@ -42,3 +42,36 @@ NUM_KEYS = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f',
                11: 'l', 12: 'm', 13: 'n', 14: 'o', 15: 'p', 
                16: 'q', 17: 'r', 18: 's', 19: 't', 20: 'u', 
                21: 'v', 22: 'w', 23: 'x', 24: 'y', 25: 'z'}
+
+# Helper functions
+
+# Text to number converter
+def convert_to_num(text):
+    text_to_num = []
+
+    for letter in text.lower():
+
+        if letter.isalpha():
+            text_to_num.append(TEXT_KEYS[letter])
+
+        else:
+            text_to_num.append(letter)
+
+    return text_to_num
+
+# Number to text converter
+def convert_to_text(resultant_num):
+    completed_word = ''
+
+    for num in resultant_num:
+        # If character is not a string, retain
+        if (not str(num).isdigit()):
+            completed_word += num
+
+        elif(num > 25):
+            completed_word += NUM_KEYS[(num % 26)]
+
+        else:
+            completed_word += NUM_KEYS[num]
+
+    return completed_word
