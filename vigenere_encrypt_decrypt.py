@@ -46,8 +46,10 @@ NUM_KEYS = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f',
 def encrypt(text, key):
     resultant_num = []
 
+    text.lower()
+    key.lower()
     # Take the numerical counterparts of both TEXT and KEY.
-
+    
     numberified_text = convert_to_num(text)
     numberified_keys = convert_to_num(key)
 
@@ -72,6 +74,8 @@ def encrypt(text, key):
 def decrypt(text, key):
     resultant_num = []
 
+    text.lower()
+    key.lower()
     # Take the numerical counterparts of both TEXT and KEY.
 
     numberified_text = convert_to_num(text)
