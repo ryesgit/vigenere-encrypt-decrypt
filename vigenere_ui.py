@@ -9,7 +9,7 @@ layout = [
     [sg.Text('Enter text to encode or decode'), sg.Input(border_width=5, key='input')],
     [sg.T(' ', size=(1,1))],
     [sg.Text('Key: '), sg.Input(pad=(10, 0), border_width=5, key='key')],
-    [sg.Text('', key='decode-or-encode', font=('Roboto', 20)), sg.Text(key='value', font=('Roboto', 20))],
+    [sg.Text('', key='decode-or-encode', font=('Roboto', 20)), sg.Text(key='value', font=('Roboto', 20)), sg.Button('Copy', visible=False)],
     [sg.Button('Encrypt'), sg.Button('Decrypt')],
     [sg.Button('Quit')]
 ]
@@ -22,12 +22,16 @@ while True:
     if event == 'Quit' or event == sg.WIN_CLOSED:
         break
 
+    if event == 'Copy':
+        sg.clipboard_set(window['value'].get())
+
     if event == 'Decrypt':
         decrypted_message = decrypt(values['input'], values['key'])
 
         if window['decode-or-encode'].get() == '' or window['decode-or-encode'].get() == 'Encoded Message: ':
             window['decode-or-encode'].update('Decoded Message: ')
             window['value'].update(decrypted_message)
+            window['Copy'].update(visible=True)
             continue
         
         window['value'].update(decrypted_message)
@@ -38,8 +42,10 @@ while True:
         if window['decode-or-encode'].get() == '' or window['decode-or-encode'].get() == 'Decoded Message: ':
             window['decode-or-encode'].update('Encoded Message: ')
             window['value'].update(encrypted_message)
+            window['Copy'].update(visible=True)
             continue
 
+        print('dawdawd')
         window['value'].update(encrypted_message)
 
 
