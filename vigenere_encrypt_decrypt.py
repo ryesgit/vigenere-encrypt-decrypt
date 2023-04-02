@@ -43,6 +43,32 @@ NUM_KEYS = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f',
                16: 'q', 17: 'r', 18: 's', 19: 't', 20: 'u', 
                21: 'v', 22: 'w', 23: 'x', 24: 'y', 25: 'z'}
 
+def encrypt(text, key):
+    resultant_num = []
+
+    # Take the numerical counterparts of both TEXT and KEY.
+
+    TEXT_KEYS = convert_to_num(text)
+    key_to_num = convert_to_num(key)
+
+    key_len = len(key_to_num)
+    for (text_index, text_num) in enumerate(TEXT_KEYS):
+        # If string is not a number, retain
+        if not str(text_num).isdigit():
+            resultant_num.append(text_num)
+        # If text length is longer than key length, always go back to key length[0] every time we run out of key digits
+        elif (text_index + 1 > key_len):
+            offset = text_index % key_len
+            resultant_num.append(text_num + key_to_num[offset])
+        # Key indices within key length can be used as is
+        else:
+            resultant_num.append(text_num + key_to_num[text_index])
+
+    # Convert result number to text
+    encrypted_word = convert_to_text(resultant_num)
+
+    return encrypted_word
+
 # Helper functions
 
 # Text to number converter
