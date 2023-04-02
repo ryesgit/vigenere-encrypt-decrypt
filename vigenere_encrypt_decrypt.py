@@ -69,6 +69,34 @@ def encrypt(text, key):
 
     return encrypted_word
 
+def decrypt(text, key):
+    resultant_num = []
+
+    # Take the numerical counterparts of both TEXT and KEY.
+
+    numberified_text = convert_to_num(text)
+    numberified_key = convert_to_num(key)
+
+    for (index, num) in enumerate(numberified_text):
+        # Retain spaces
+        if (str(num).isspace()):
+            resultant_num.append(' ')
+        
+        # If text length > key length, always go back to key length[0]
+        elif(index + 1 > len(numberified_key)):
+            offset = index % len(numberified_key)
+            print('Offset', offset)
+            difference = (num - numberified_key[offset]) + 26
+            resultant_num.append(difference)
+        
+        # If key length > text length, execute only until text is traversed
+        else:
+            difference = (num - numberified_key[index]) + 26
+            resultant_num.append(difference)
+    decrypted_word = convert_to_text(resultant_num)    
+
+    return decrypted_word
+
 # Helper functions
 
 # Text to number converter
