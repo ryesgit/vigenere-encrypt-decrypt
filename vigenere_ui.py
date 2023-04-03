@@ -49,7 +49,6 @@ while True:
             window['Copy'].update(visible=True)
             continue
 
-        print('dawdawd')
         window['value'].update(encrypted_message)
 
 
